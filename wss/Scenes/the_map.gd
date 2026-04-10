@@ -7,11 +7,23 @@ enum Terrain {
 	SWAMP #4
 }
 
+enum Items {
+	FOOD,
+	WATER,
+	GOLD
+}
+
 var terrain_types = [
 	preload("res://Assets/GRASS.tscn"),
 	preload("res://Assets/DESERT.tscn"),
 	preload("res://Assets/MOUNTAIN.tscn"),
 	preload("res://Assets/SWAMP.tscn")
+]
+
+var item_types = [
+	preload("res://Assets/FOOD.tscn"),
+	preload("res://Assets/WATER.tscn"),
+	preload("res://Assets/GOLD.tscn")
 ]
 
 #change this take in user options
@@ -30,7 +42,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-"""
+""""""
 # This is use procedural generation based on neighbors
 func generate_map():
 	
@@ -83,8 +95,11 @@ func generate_map():
 					if roll < 0.9:
 						map[x].append(west)
 					else:
-						map[x].append(randi() % terrain_types.size())"""
-
+						map[x].append(randi() % terrain_types.size())
+	for i in range(1):
+		smooth_map()
+"""
+#creates a map of random generation
 func generate_map():
 	for x in range(width):
 		map.append([])
@@ -92,13 +107,15 @@ func generate_map():
 			map[x].append(randi() % terrain_types.size())
 			
 	for i in range(3):
-		smooth_map()
+		smooth_map()"""
 
+#smooths the map to reduce randomness
 func smooth_map():
 	for x in range(width):
 		for y in range(height):
 			map[x][y] = get_dominant_neighbor(x,y)
 
+#gets the surround tiles and determines it's tile based on it
 func get_dominant_neighbor(x, y):
 	var counts = {}
 	
@@ -132,6 +149,61 @@ func get_dominant_neighbor(x, y):
 	
 	return best_terrain
 
+#spawning items, it will depended on terrain and rng chance
+func try_spawn_item(x,y):
+	var spawn_chance = 0.05
+	
+	#if didn't get it, skip
+	if randf() > spawn_chance:
+		return
+	
+	#get info on tile
+	var terrain = map[x][y]
+	var roll = randf()
+	var item_type = -1
+	
+	#grass terrain possibilities: chance for all
+	if terrain == Terrain.GRASS:
+		if roll < 0.33:
+			item_type = Items.FOOD
+		elif roll < 0.66:
+			item_type = Items.WATER
+		else:
+			item_type = Items.GOLD
+	#desert terrain: higher chance for food or gold
+	elif terrain == Terrain.DESERT:
+		if roll < 0.45:
+			item_type = Items.FOOD
+		elif roll < 0.90:
+			item_type = Items.GOLD
+		else:
+			item_type = Items.WATER
+	#mountain: higher chance for gold or water
+	elif terrain == Terrain.MOUNTAIN:
+		if roll < 0.45:
+			item_type = Items.WATER
+		elif roll < 0.90:
+			item_type = Items.GOLD
+		else:
+			item_type = Items.FOOD
+	#swamp: higher chance for water or food
+	elif terrain == Terrain.SWAMP:
+		if roll < 0.45:
+			item_type = Items.FOOD
+		elif roll < 0.90:
+			item_type = Items.WATER
+		else:
+			item_type = Items.GOLD
+	
+	#spawn item
+	if item_type == -1:
+		return
+	
+	var item = item_types[item_type].instantiate()
+	item.position = Vector2(x * tile_size, y * tile_size)
+	add_child(item)
+
+#creates the map with the tiles and adds the terrain tiles to each of them
 func spawn_map():
 	for x in range(width):
 		for y in range(height):
@@ -141,3 +213,6 @@ func spawn_map():
 			tile.position = Vector2(x * tile_size, y * tile_size)
 			
 			add_child(tile)
+			
+			#spawn items
+			try_spawn_item(x,y)
