@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bijjsrbtpo4aw"]
+
+[ext_resource type="Texture2D" uid="uid://dp3ceg2mi5ixt" path="res://Assets/Textures/pixil-frame-0 (2).png" id="1_ev34m"]
+
+[node name="Grass" type="Sprite2D" unique_id=1223849742]
+texture = ExtResource("1_ev34m")
