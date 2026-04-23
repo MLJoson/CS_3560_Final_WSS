@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://cjtjro1vypd8d"]
 
 [ext_resource type="Texture2D" uid="uid://ctwuj13m3v0vv" path="res://Assets/Textures/pixil-frame-0 (1).png" id="1_cfukr"]
+[ext_resource type="Script" uid="uid://cr4ceh45tjs3h" path="res://Scripts/tileObject.gd" id="2_xgsw0"]
 
 [node name="Desert" type="Sprite2D" unique_id=1223849742]
 texture = ExtResource("1_cfukr")
+script = ExtResource("2_xgsw0")
+
+[node name="Button" type="Button" parent="." unique_id=958958709]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

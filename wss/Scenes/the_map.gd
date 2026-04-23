@@ -13,6 +13,10 @@ enum Items {
 	GOLD
 }
 
+enum Players{
+	Default
+}
+
 var terrain_types = [
 	preload("res://Assets/GRASS.tscn"),
 	preload("res://Assets/DESERT.tscn"),
@@ -26,9 +30,16 @@ var item_types = [
 	preload("res://Assets/GOLD.tscn")
 ]
 
+var player_types= [
+	preload("res://Assets/thePlayer.tscn")
+]
+
+#player instanace
+var player_instance
+
 #change this take in user options
-var width = 50
-var height = 50
+var width = 100
+var height = 20
 var tile_size = 50
 
 var map = []
@@ -211,8 +222,18 @@ func spawn_map():
 			var tile = terrain_types[terrain_type].instantiate()
 			
 			tile.position = Vector2(x * tile_size, y * tile_size)
-			
+			tile.connect("tile_clicked", Callable(self, "on_tile_clicked"))
 			add_child(tile)
 			
 			#spawn items
 			try_spawn_item(x,y)
+			
+	# Place player into the map
+	var placement = randi_range(0, height-1)
+	player_instance = player_types[0].instantiate()
+	player_instance.position = Vector2(0, placement * tile_size)
+	add_child(player_instance)
+
+# get position when user clicks button
+func on_tile_clicked(target_tile: Vector2i):
+	player_instance.set_target(target_tile)
