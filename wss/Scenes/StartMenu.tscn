@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://csmymj1a2mtql"]
+
+[ext_resource type="Script" uid="uid://osfm8gt0htis" path="res://Scripts/global_settings.gd" id="1_dvnd1"]
+
+[node name="StartMenu" type="Control" unique_id=566975559]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dvnd1")
+
+[node name="Label" type="Label" parent="." unique_id=1205269000]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -240.0
+offset_right = -19.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Wilderness Survival Game"
+
+[node name="DifficultyDropdown" type="OptionButton" parent="." unique_id=1467756996]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 272.0
+offset_right = 612.0
+offset_bottom = 303.0
+selected = 0
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="heightText" type="LineEdit" parent="." unique_id=1479073576]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 274.0
+offset_right = 329.0
+offset_bottom = 305.0
+placeholder_text = "Height"
+
+[node name="widthText" type="LineEdit" parent="." unique_id=239125245]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 273.0
+offset_right = 474.0
+offset_bottom = 304.0
+placeholder_text = "Width"
+
+[node name="Button" type="Button" parent="." unique_id=798254298]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 425.0
+offset_right = 568.0
+offset_bottom = 456.0
+scale = Vector2(2, 2)
+text = "Start Game"
+
+[node name="xLabel" type="Label" parent="." unique_id=473065166]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 277.0
+offset_right = 353.0
+offset_bottom = 300.0
+text = "x"
+
+[node name="mapsizeLabel" type="Label" parent="." unique_id=319488376]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 241.0
+offset_right = 443.0
+offset_bottom = 264.0
+text = "Set map size (max 1000)"
+
+[node name="difficultyLabel" type="Label" parent="." unique_id=29909578]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 243.0
+offset_right = 636.0
+offset_bottom = 266.0
+text = "Choose difficulty"
+
+[node name="visionLabel" type="Label" parent="." unique_id=1678477587]
+layout_mode = 0
+offset_left = 705.0
+offset_top = 243.0
+offset_right = 837.0
+offset_bottom = 266.0
+text = "Choose vision"
+
+[node name="visionDropdown" type="OptionButton" parent="." unique_id=724993933]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 272.0
+offset_right = 819.0
+offset_bottom = 303.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Focused"
+popup/item_0/id = 0
+popup/item_1/text = "Cautious"
+popup/item_1/id = 1
+popup/item_2/text = "Keen-Eyed"
+popup/item_2/id = 2
+popup/item_3/text = "Far-Sight"
+popup/item_3/id = 3
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

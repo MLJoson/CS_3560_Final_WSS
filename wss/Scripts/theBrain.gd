@@ -3,14 +3,68 @@ var path = []
 var tile_size = 50
 var speed = 200
 
-@onready var brain = $theBrain
+var vision_type
+var vision_range
+var directions = []
+func _ready():
+	vision_type = Global.vision
+	
+	match vision_type:
+		"Focused":
+			vision_range = 2
+			directions = [
+				Vector2i(1,0),
+				Vector2i(1,1),
+				Vector2i(1,-1)
+			]
+		"Cautious":
+			vision_range = 4
+			directions = [
+				Vector2i(1,0),
+				Vector2i(0,1),
+				Vector2i(0,-1)
+			]
+		"Keen-Eyed":
+			vision_range = 6
+			directions = [
+				Vector2i(1,0),
+				Vector2i(0,1),
+				Vector2i(0,-1),
+				Vector2i(1,1),
+				Vector2i(1,-1),
+				Vector2i(2,0)
+			]
+		"Far-Sighted":
+			vision_range = 8
+			directions = [
+				Vector2i(1,0),
+				Vector2i(0,1),
+				Vector2i(0,-1),
+				Vector2i(1,1),
+				Vector2i(1,-1),
+				Vector2i(2,0),
+				Vector2i(2,1),
+				Vector2i(2,-1),
+				Vector2i(0,-2),
+				Vector2i(0,2),
+				Vector2i(1,-2),
+				Vector2i(1,2),
+			]
 
 func set_target(target_tile: Vector2i):
+	if not is_tile_visible(
+		Vector2i(int(position.x / tile_size), int(position.y / tile_size)),
+		target_tile):
+		return
+	
 	path = generate_simple_path(target_tile)
 	
 func generate_simple_path(target: Vector2i):
 	var result = []
-	var current = Vector2i(position.x / tile_size, position.y / tile_size)
+	var current = Vector2i(
+	int(position.x / tile_size),
+	int(position.y / tile_size)
+	)
 	
 	# Move in X direction
 	while current.x != target.x:
@@ -44,3 +98,17 @@ func _process(delta):
 	if position.distance_to(target_pos) < 5:
 		position = target_pos
 		path.pop_front() # move to next tile
+		get_parent().update_visibility()
+
+func is_tile_visible(player_pos: Vector2i, tile_pos: Vector2i) -> bool:
+	var diff = tile_pos - player_pos
+
+	for dir in directions:
+		# check if tile is in same general direction
+		if sign(diff.x) == sign(dir.x) and sign(diff.y) == sign(dir.y):
+
+			# allow same row/col diagonal grouping
+			if abs(diff.x) <= vision_range and abs(diff.y) <= vision_range:
+				return true
+
+	return false

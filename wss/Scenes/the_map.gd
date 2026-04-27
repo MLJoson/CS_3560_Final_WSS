@@ -43,8 +43,19 @@ var height = 20
 var tile_size = 50
 
 var map = []
+var tiles = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	#getting info from menu
+	width = Global.map_width
+	height = Global.map_height
+	
+	print("Width:", width)
+	print("Height:", height)
+	print("Difficulty:", Global.difficulty)
+	print("Vision:", Global.vision)
+	
 	generate_map()
 	spawn_map()
 
@@ -164,6 +175,15 @@ func get_dominant_neighbor(x, y):
 func try_spawn_item(x,y):
 	var spawn_chance = 0.05
 	
+	#change chance based on difficulty
+	match Global.difficulty:
+		"Easy":
+			spawn_chance = 0.1
+		"Medium":
+			spawn_chance = 0.05
+		"Hard":
+			spawn_chance = 0.02
+			
 	#if didn't get it, skip
 	if randf() > spawn_chance:
 		return
@@ -217,23 +237,41 @@ func try_spawn_item(x,y):
 #creates the map with the tiles and adds the terrain tiles to each of them
 func spawn_map():
 	for x in range(width):
+		tiles.append([])
 		for y in range(height):
 			var terrain_type = map[x][y]
 			var tile = terrain_types[terrain_type].instantiate()
 			
 			tile.position = Vector2(x * tile_size, y * tile_size)
+			tile.grid_pos = Vector2i(x, y)
 			tile.connect("tile_clicked", Callable(self, "on_tile_clicked"))
+			
 			add_child(tile)
+			tiles[x].append(tile)
 			
-			#spawn items
 			try_spawn_item(x,y)
-			
-	# Place player into the map
+
 	var placement = randi_range(0, height-1)
 	player_instance = player_types[0].instantiate()
 	player_instance.position = Vector2(0, placement * tile_size)
 	add_child(player_instance)
 
+	update_visibility()
+
 # get position when user clicks button
 func on_tile_clicked(target_tile: Vector2i):
 	player_instance.set_target(target_tile)
+
+func update_visibility():
+	var player_tile = Vector2i(
+	int(player_instance.position.x / tile_size),
+	int(player_instance.position.y / tile_size))
+	
+	for x in range(width):
+		for y in range(height):
+			var tile = tiles[x][y]
+			
+			if player_instance.is_tile_visible(player_tile, Vector2i(x,y)):
+				tile.set_visible_state(true)
+			else:
+				tile.set_visible_state(false)

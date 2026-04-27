@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="WSS"
+run/main_scene="uid://csmymj1a2mtql"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://osfm8gt0htis"
 
 [physics]
 
