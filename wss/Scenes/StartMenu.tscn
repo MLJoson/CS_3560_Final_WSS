@@ -81,7 +81,7 @@ offset_left = 258.0
 offset_top = 241.0
 offset_right = 443.0
 offset_bottom = 264.0
-text = "Set map size (max 1000)"
+text = "Set map size (max 200)"
 
 [node name="difficultyLabel" type="Label" parent="." unique_id=29909578]
 layout_mode = 0

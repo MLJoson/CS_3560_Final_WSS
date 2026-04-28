@@ -15,7 +15,7 @@ func get_valid_size(text):
 	var value = int(text)
 	
 	# Check range
-	if value < 20 or value > 1000:
+	if value < 20 or value > 200:
 		return -1
 	
 	return value

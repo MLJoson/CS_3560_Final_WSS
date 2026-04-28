@@ -2,57 +2,17 @@ extends CharacterBody2D
 var path = []
 var tile_size = 50
 var speed = 200
+var vision: Vision
 
-var vision_type
-var vision_range
-var directions = []
+
 func _ready():
-	vision_type = Global.vision
+	vision = Vision.new()
+	add_child(vision) 
 	
-	match vision_type:
-		"Focused":
-			vision_range = 1
-			directions = [
-				Vector2i(1,0),
-				Vector2i(1,1),
-				Vector2i(1,-1)
-			]
-		"Cautious":
-			vision_range = 1
-			directions = [
-				Vector2i(1,0),
-				Vector2i(0,1),
-				Vector2i(0,-1)
-			]
-		"Keen-Eyed":
-			vision_range = 1
-			directions = [
-				Vector2i(1,0),
-				Vector2i(0,1),
-				Vector2i(0,-1),
-				Vector2i(1,1),
-				Vector2i(1,-1),
-				Vector2i(2,0)
-			]
-		"Far-Sighted":
-			vision_range = 1
-			directions = [
-				Vector2i(1,0),
-				Vector2i(0,1),
-				Vector2i(0,-1),
-				Vector2i(1,1),
-				Vector2i(1,-1),
-				Vector2i(2,0),
-				Vector2i(2,1),
-				Vector2i(2,-1),
-				Vector2i(0,-2),
-				Vector2i(0,2),
-				Vector2i(1,-2),
-				Vector2i(1,2),
-			]
+	vision.setup(Global.vision)
 
 func set_target(target_tile: Vector2i):
-	if not is_tile_visible(
+	if not vision.is_tile_visible(
 		Vector2i(int(position.x / tile_size), int(position.y / tile_size)),
 		target_tile):
 		return
@@ -107,25 +67,6 @@ func apply_movement_cost(tile_pos: Vector2i):
 	var map = get_parent()
 	var terrain = map.map[tile_pos.x][tile_pos.y]
 	Player.apply_movement_cost(terrain)
-
-#get the visible and clickable tiles
-func get_visible_offsets():
-	var tiles = []
-
-	for dir in directions:
-		for i in range(1, vision_range + 1):
-			var base = dir * i
-			tiles.append(base)
-
-			# widen shape
-			tiles.append(base + Vector2i(0,1))
-			tiles.append(base + Vector2i(0,-1))
-
-	return tiles
-
-func is_tile_visible(player_pos: Vector2i, tile_pos: Vector2i) -> bool:
-	var diff = tile_pos - player_pos
-	return diff in get_visible_offsets()
 
 #collect and item if there is one
 func collect_item_at_tile(tile_pos: Vector2i):

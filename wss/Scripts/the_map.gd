@@ -46,7 +46,6 @@ var map = []
 var tiles = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	#getting info from menu
 	width = Global.map_width
 	height = Global.map_height
@@ -64,7 +63,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-""""""
 # This is use procedural generation based on neighbors
 func generate_map():
 	
@@ -120,16 +118,7 @@ func generate_map():
 						map[x].append(randi() % terrain_types.size())
 	for i in range(1):
 		smooth_map()
-"""
-#creates a map of random generation
-func generate_map():
-	for x in range(width):
-		map.append([])
-		for y in range(height):
-			map[x].append(randi() % terrain_types.size())
-			
-	for i in range(3):
-		smooth_map()"""
+
 
 #smooths the map to reduce randomness
 func smooth_map():
@@ -260,8 +249,14 @@ func spawn_map():
 
 # get position when user clicks button
 func on_tile_clicked(target_tile: Vector2i):
-	player_instance.set_target(target_tile)
+	var player_tile = Vector2i(
+		int(player_instance.position.x / tile_size),
+		int(player_instance.position.y / tile_size))
 
+	if not player_instance.vision.is_tile_visible(player_tile, target_tile):
+		return
+
+	player_instance.set_target(target_tile)
 func update_visibility():
 	var player_tile = Vector2i(
 	int(player_instance.position.x / tile_size),
@@ -271,7 +266,8 @@ func update_visibility():
 		for y in range(height):
 			var tile = tiles[x][y]
 			
-			if player_instance.is_tile_visible(player_tile, Vector2i(x,y)):
+			if player_instance.vision.is_tile_visible(player_tile, Vector2i(x,y)):
 				tile.set_visible_state(true)
 			else:
 				tile.set_visible_state(false)
+	print(player_instance.vision.offsets)
