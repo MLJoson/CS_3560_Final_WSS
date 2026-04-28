@@ -11,21 +11,21 @@ func _ready():
 	
 	match vision_type:
 		"Focused":
-			vision_range = 2
+			vision_range = 1
 			directions = [
 				Vector2i(1,0),
 				Vector2i(1,1),
 				Vector2i(1,-1)
 			]
 		"Cautious":
-			vision_range = 4
+			vision_range = 1
 			directions = [
 				Vector2i(1,0),
 				Vector2i(0,1),
 				Vector2i(0,-1)
 			]
 		"Keen-Eyed":
-			vision_range = 6
+			vision_range = 1
 			directions = [
 				Vector2i(1,0),
 				Vector2i(0,1),
@@ -35,7 +35,7 @@ func _ready():
 				Vector2i(2,0)
 			]
 		"Far-Sighted":
-			vision_range = 8
+			vision_range = 1
 			directions = [
 				Vector2i(1,0),
 				Vector2i(0,1),
@@ -94,21 +94,49 @@ func _process(delta):
 	var direction = (target_pos - position).normalized()
 	position += direction * speed * delta
 	
-	# Snap when close enough
+	#Snap when close enough
 	if position.distance_to(target_pos) < 5:
 		position = target_pos
 		path.pop_front() # move to next tile
+		collect_item_at_tile(target_tile)
+		apply_movement_cost(target_tile)
 		get_parent().update_visibility()
+
+#get the movement cost of the movement per step
+func apply_movement_cost(tile_pos: Vector2i):
+	var map = get_parent()
+	var terrain = map.map[tile_pos.x][tile_pos.y]
+	Player.apply_movement_cost(terrain)
+
+#get the visible and clickable tiles
+func get_visible_offsets():
+	var tiles = []
+
+	for dir in directions:
+		for i in range(1, vision_range + 1):
+			var base = dir * i
+			tiles.append(base)
+
+			# widen shape
+			tiles.append(base + Vector2i(0,1))
+			tiles.append(base + Vector2i(0,-1))
+
+	return tiles
 
 func is_tile_visible(player_pos: Vector2i, tile_pos: Vector2i) -> bool:
 	var diff = tile_pos - player_pos
+	return diff in get_visible_offsets()
 
-	for dir in directions:
-		# check if tile is in same general direction
-		if sign(diff.x) == sign(dir.x) and sign(diff.y) == sign(dir.y):
-
-			# allow same row/col diagonal grouping
-			if abs(diff.x) <= vision_range and abs(diff.y) <= vision_range:
-				return true
-
-	return false
+#collect and item if there is one
+func collect_item_at_tile(tile_pos: Vector2i):
+	var map = get_parent()
+	
+	# loop through children to find items at this tile
+	for child in map.get_children():
+		if child is Node2D:
+			var child_tile = Vector2i(
+				int(child.position.x / tile_size),
+				int(child.position.y / tile_size))
+				
+			if child_tile == tile_pos and child.has_method("collect"):
+				child.collect()

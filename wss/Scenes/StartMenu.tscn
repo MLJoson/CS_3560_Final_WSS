@@ -113,7 +113,7 @@ popup/item_1/text = "Cautious"
 popup/item_1/id = 1
 popup/item_2/text = "Keen-Eyed"
 popup/item_2/id = 2
-popup/item_3/text = "Far-Sight"
+popup/item_3/text = "Far-Sighted"
 popup/item_3/id = 3
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

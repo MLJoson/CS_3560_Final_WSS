@@ -5,6 +5,7 @@ var map_height = 20
 var difficulty = ""
 var vision = ""
 
+
 #check user intput
 func get_valid_size(text):
 	#check if it's actually a number
@@ -20,6 +21,7 @@ func get_valid_size(text):
 	return value
 
 func _on_button_pressed() -> void:
+	Player.reset()
 	var width = get_valid_size($widthText.text)
 	var height = get_valid_size($heightText.text)
 	

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://im0x4mufdgio"]
 
 [ext_resource type="Texture2D" uid="uid://ckj6heapihgjt" path="res://Assets/Textures/pixil-frame-0 (6).png" id="1_f0ccu"]
+[ext_resource type="Script" uid="uid://dxvmiispy36ot" path="res://Scripts/goldItem.gd" id="2_bgoyr"]
 
 [node name="Gold" type="Sprite2D" unique_id=1223849742]
 texture = ExtResource("1_f0ccu")
+script = ExtResource("2_bgoyr")

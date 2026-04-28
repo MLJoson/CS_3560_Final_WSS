@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cddut0bxrbb15"]
 
-[ext_resource type="Script" uid="uid://b05tuk16rdkj1" path="res://Scenes/the_map.gd" id="1_l1tcm"]
+[ext_resource type="Script" uid="uid://b05tuk16rdkj1" path="res://Scripts/the_map.gd" id="1_l1tcm"]
 [ext_resource type="Script" uid="uid://dylu7bsvv65ls" path="res://Scripts/camera_2d.gd" id="2_el780"]
 
 [node name="Node2D" type="Node2D" unique_id=245022687]
