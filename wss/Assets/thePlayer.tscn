@@ -2,9 +2,81 @@
 
 [ext_resource type="Script" uid="uid://dbuyfmbxupixr" path="res://Scripts/theBrain.gd" id="1_eibng"]
 [ext_resource type="Texture2D" uid="uid://c35pn0p8fiws7" path="res://Assets/Textures/pixil-frame-0 (7).png" id="2_eibng"]
+[ext_resource type="Texture2D" uid="uid://bqhjnh2cs1ty8" path="res://Assets/Textures/playerSpriteSheet.webp" id="3_bwicj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrt7q"]
 size = Vector2(50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7lv0"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8jsc"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8oog"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vcud"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evtms"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_berr8"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etj3s"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(300, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al7qt"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(350, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0ueg"]
+atlas = ExtResource("3_bwicj")
+region = Rect2(400, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_14c33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7lv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8jsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8oog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vcud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evtms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_berr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etj3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al7qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0ueg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
 
 [node name="thePlayer" type="CharacterBody2D" unique_id=455729919]
 script = ExtResource("1_eibng")
@@ -13,4 +85,11 @@ script = ExtResource("1_eibng")
 shape = SubResource("RectangleShape2D_vrt7q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=764523882]
+visible = false
 texture = ExtResource("2_eibng")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1120141716]
+sprite_frames = SubResource("SpriteFrames_14c33")
+autoplay = "default"
+frame = 6
+frame_progress = 0.23359194

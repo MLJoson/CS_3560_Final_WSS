@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ca4w26d2fytyo"]
+
+[ext_resource type="Texture2D" uid="uid://cuyauqt08u83h" path="res://Assets/Textures/tundra.webp" id="1_08jns"]
+[ext_resource type="Script" uid="uid://cr4ceh45tjs3h" path="res://Scripts/tileObject.gd" id="2_xplt7"]
+
+[node name="Swamp" type="Sprite2D" unique_id=1223849742]
+texture = ExtResource("1_08jns")
+script = ExtResource("2_xplt7")
+
+[node name="Button" type="Button" parent="." unique_id=728248409]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -4,7 +4,8 @@ enum Terrain {
 	GRASS, #1
 	DESERT, #2
 	MOUNTAIN, #3
-	SWAMP #4
+	SWAMP, #4
+	TUNDRA #5
 }
 
 enum Items {
@@ -21,7 +22,8 @@ var terrain_types = [
 	preload("res://Assets/GRASS.tscn"),
 	preload("res://Assets/DESERT.tscn"),
 	preload("res://Assets/MOUNTAIN.tscn"),
-	preload("res://Assets/SWAMP.tscn")
+	preload("res://Assets/SWAMP.tscn"),
+	preload("res://Assets/TUNDRA.tscn")
 ]
 
 var item_types = [
