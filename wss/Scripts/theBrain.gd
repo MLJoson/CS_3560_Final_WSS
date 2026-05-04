@@ -61,6 +61,7 @@ func _process(delta):
 		collect_item_at_tile(target_tile)
 		apply_movement_cost(target_tile)
 		get_parent().update_visibility()
+		get_parent().check_win_condition()
 
 #get the movement cost of the movement per step
 func apply_movement_cost(tile_pos: Vector2i):

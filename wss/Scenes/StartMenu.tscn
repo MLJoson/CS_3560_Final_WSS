@@ -116,4 +116,14 @@ popup/item_2/id = 2
 popup/item_3/text = "Far-Sighted"
 popup/item_3/id = 3
 
+[node name="exitButton" type="Button" parent="." unique_id=1884239769]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 555.0
+offset_right = 569.0
+offset_bottom = 586.0
+scale = Vector2(2, 2)
+text = "Exit"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="exitButton" to="." method="_on_exit_button_pressed"]

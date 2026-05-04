@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://61djrlpdfds6"]
+
+[ext_resource type="Script" uid="uid://crx5kti5b42kk" path="res://Scripts/stats_ui.gd" id="1_c32vu"]
+
+[node name="StatsUi" type="CanvasLayer" unique_id=731467271]
+script = ExtResource("1_c32vu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=642382356]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthLabel" type="Label" parent="VBoxContainer" unique_id=1946243107]
+layout_mode = 2
+text = "Strength: "
+
+[node name="FoodLabel" type="Label" parent="VBoxContainer" unique_id=1281060842]
+layout_mode = 2
+text = "Food: "
+
+[node name="WaterLabel" type="Label" parent="VBoxContainer" unique_id=1511232716]
+layout_mode = 2
+text = "Water:  "
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer" unique_id=668209202]
+layout_mode = 2
+text = "Gold:  "

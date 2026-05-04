@@ -39,3 +39,6 @@ func _on_button_pressed() -> void:
 	Global.vision = $visionDropdown.get_item_text($visionDropdown.selected)
 	
 	get_tree().change_scene_to_file("res://Scenes/theMap.tscn")
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

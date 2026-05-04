@@ -46,6 +46,9 @@ var tile_size = 50
 
 var map = []
 var tiles = []
+
+var stats_ui
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#getting info from menu
@@ -56,7 +59,8 @@ func _ready() -> void:
 	print("Height:", height)
 	print("Difficulty:", Global.difficulty)
 	print("Vision:", Global.vision)
-	
+	stats_ui = preload("res://Scenes/StatsUI.tscn").instantiate()
+	add_child(stats_ui)
 	generate_map()
 	spawn_map()
 
@@ -273,3 +277,14 @@ func update_visibility():
 			else:
 				tile.set_visible_state(false)
 	print(player_instance.vision.offsets)
+
+#win conditioning check
+func check_win_condition():
+	var player_tile = Vector2i(
+		int(player_instance.position.x / tile_size),
+		int(player_instance.position.y / tile_size))
+	if player_tile.x >= width - 1:
+		on_player_win()
+
+func on_player_win():
+	get_tree().change_scene_to_file("res://Scenes/YouWin.tscn")

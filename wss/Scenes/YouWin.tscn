@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dl3arau17cfes"]
+
+[ext_resource type="Script" uid="uid://hi703u6bpyaq" path="res://Scripts/you_win_page.gd" id="1_a7cdt"]
+
+[node name="YouWin!" type="CanvasLayer" unique_id=1969728204]
+script = ExtResource("1_a7cdt")
+
+[node name="Label" type="Label" parent="." unique_id=1979911329]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -239.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Congratulation: You Win!"
+
+[node name="newGameButton" type="Button" parent="." unique_id=1103269544]
+offset_left = 315.0
+offset_top = 372.0
+offset_right = 408.0
+offset_bottom = 403.0
+scale = Vector2(2, 2)
+text = "New Game"
+
+[node name="exitButton" type="Button" parent="." unique_id=1216904986]
+offset_left = 676.0
+offset_top = 375.0
+offset_right = 769.0
+offset_bottom = 406.0
+scale = Vector2(2, 2)
+text = "Exit"
+
+[connection signal="pressed" from="newGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="exitButton" to="." method="_on_exit_button_pressed"]
