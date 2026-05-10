@@ -32,9 +32,11 @@ var item_types = [
 	preload("res://Assets/GOLD.tscn")
 ]
 
-var player_types= [
-	preload("res://Assets/thePlayer.tscn")
-]
+var player_types = {
+	"Hungry": preload("res://Assets/hungryPlayer.tscn"),
+	"Thirsty": preload("res://Assets/thirstyPlayer.tscn"),
+	"Greedy": preload("res://Assets/greedyPlayer.tscn")
+}
 
 #player instanace
 var player_instance
@@ -247,10 +249,9 @@ func spawn_map():
 			try_spawn_item(x,y)
 
 	var placement = randi_range(0, height-1)
-	player_instance = player_types[0].instantiate()
+	player_instance = player_types[Global.brain].instantiate()
 	player_instance.position = Vector2(0, placement * tile_size)
 	add_child(player_instance)
-
 	update_visibility()
 
 # get position when user clicks button
@@ -288,3 +289,6 @@ func check_win_condition():
 
 func on_player_win():
 	get_tree().change_scene_to_file("res://Scenes/YouWin.tscn")
+
+func get_tile_world_position(tile: Vector2i) -> Vector2:
+	return Vector2(tile.x * tile_size, tile.y * tile_size)

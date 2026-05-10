@@ -27,21 +27,6 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 text = "Wilderness Survival Game"
 
-[node name="DifficultyDropdown" type="OptionButton" parent="." unique_id=1467756996]
-layout_mode = 0
-offset_left = 516.0
-offset_top = 272.0
-offset_right = 612.0
-offset_bottom = 303.0
-selected = 0
-item_count = 3
-popup/item_0/text = "Easy"
-popup/item_0/id = 0
-popup/item_1/text = "Medium"
-popup/item_1/id = 1
-popup/item_2/text = "Hard"
-popup/item_2/id = 2
-
 [node name="heightText" type="LineEdit" parent="." unique_id=1479073576]
 layout_mode = 0
 offset_left = 223.0
@@ -83,21 +68,28 @@ offset_right = 443.0
 offset_bottom = 264.0
 text = "Set map size (max 200)"
 
-[node name="difficultyLabel" type="Label" parent="." unique_id=29909578]
+[node name="DifficultyDropdown" type="OptionButton" parent="." unique_id=1467756996]
 layout_mode = 0
-offset_left = 504.0
-offset_top = 243.0
-offset_right = 636.0
-offset_bottom = 266.0
-text = "Choose difficulty"
+offset_left = 516.0
+offset_top = 272.0
+offset_right = 612.0
+offset_bottom = 303.0
+selected = 0
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
 
-[node name="visionLabel" type="Label" parent="." unique_id=1678477587]
+[node name="difficultyLabel" type="Label" parent="DifficultyDropdown" unique_id=29909578]
 layout_mode = 0
-offset_left = 705.0
-offset_top = 243.0
-offset_right = 837.0
-offset_bottom = 266.0
-text = "Choose vision"
+offset_left = -12.0
+offset_top = -29.0
+offset_right = 120.0
+offset_bottom = -6.0
+text = "Choose difficulty"
 
 [node name="visionDropdown" type="OptionButton" parent="." unique_id=724993933]
 layout_mode = 0
@@ -115,6 +107,37 @@ popup/item_2/text = "Keen-Eyed"
 popup/item_2/id = 2
 popup/item_3/text = "Far-Sighted"
 popup/item_3/id = 3
+
+[node name="visionLabel" type="Label" parent="visionDropdown" unique_id=1678477587]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -29.0
+offset_right = 131.0
+offset_bottom = -6.0
+text = "Choose vision"
+
+[node name="brainDropdown" type="OptionButton" parent="." unique_id=166529307]
+layout_mode = 0
+offset_left = 875.0
+offset_top = 274.0
+offset_right = 995.0
+offset_bottom = 305.0
+selected = 0
+item_count = 3
+popup/item_0/text = "Greedy"
+popup/item_0/id = 0
+popup/item_1/text = "Thirsty"
+popup/item_1/id = 1
+popup/item_2/text = "Hungry"
+popup/item_2/id = 2
+
+[node name="brainLabel" type="Label" parent="brainDropdown" unique_id=1085401044]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -29.0
+offset_right = 131.0
+offset_bottom = -6.0
+text = "Choose vision"
 
 [node name="exitButton" type="Button" parent="." unique_id=1884239769]
 layout_mode = 0

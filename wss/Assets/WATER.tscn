@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dk77wpr0k8uti"]
 
-[ext_resource type="Texture2D" uid="uid://d3dba3lhjlo1b" path="res://Assets/Textures/pixil-frame-0 (5).png" id="1_mfx1y"]
+[ext_resource type="Texture2D" uid="uid://d3dba3lhjlo1b" path="res://Assets/Textures/water.png" id="1_mfx1y"]
 [ext_resource type="Script" uid="uid://d0pkuctbt2if1" path="res://Scripts/waterItem.gd" id="2_813e6"]
 
 [node name="Water" type="Sprite2D" unique_id=1223849742]

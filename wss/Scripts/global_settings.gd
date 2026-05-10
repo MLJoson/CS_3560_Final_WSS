@@ -4,6 +4,7 @@ var map_width = 100
 var map_height = 20
 var difficulty = ""
 var vision = ""
+var brain = ""
 
 
 #check user intput
@@ -37,6 +38,7 @@ func _on_button_pressed() -> void:
 	Global.map_height = height
 	Global.difficulty = $DifficultyDropdown.get_item_text($DifficultyDropdown.selected)
 	Global.vision = $visionDropdown.get_item_text($visionDropdown.selected)
+	Global.brain = $brainDropdown.get_item_text($brainDropdown.selected)
 	
 	get_tree().change_scene_to_file("res://Scenes/theMap.tscn")
 

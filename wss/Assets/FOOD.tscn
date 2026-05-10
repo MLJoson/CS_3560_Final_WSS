@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://pmu632p6pthq"]
 
-[ext_resource type="Texture2D" uid="uid://db01bqmoyqmu4" path="res://Assets/Textures/pixil-frame-0 (4).png" id="1_k404l"]
+[ext_resource type="Texture2D" uid="uid://db01bqmoyqmu4" path="res://Assets/Textures/food.png" id="1_k404l"]
 [ext_resource type="Script" uid="uid://cq5bdvy4jn268" path="res://Scripts/appleIten.gd" id="2_jall8"]
 
 [node name="Food" type="Sprite2D" unique_id=1223849742]

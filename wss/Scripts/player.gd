@@ -55,7 +55,6 @@ func apply_movement_cost(terrain):
 	if strength < 0:
 		get_tree().change_scene_to_file("res://Scenes/YouLose.tscn")
 
-
 #Resets when game resets
 func reset():
 	strength = 100 #may use this
