@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b7nxfuhe7kkx5"]
+
+[ext_resource type="Script" uid="uid://dr7lqcx2tnsaw" path="res://Scripts/angryTrader.gd" id="1_v60i8"]
+[ext_resource type="Texture2D" uid="uid://5q7y23pgytq4" path="res://Assets/Textures/angryTrader.webp" id="2_v60i8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfspo"]
+size = Vector2(50, 50)
+
+[node name="Trader" type="Node2D" unique_id=1191620719]
+script = ExtResource("1_v60i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1437975324]
+texture = ExtResource("2_v60i8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=953480520]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=671137028]
+shape = SubResource("RectangleShape2D_hfspo")

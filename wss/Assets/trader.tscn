@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cou5qc0he0gi7"]
+
+[ext_resource type="Texture2D" uid="uid://mxip60t6xl2f" path="res://icon.svg" id="1_uag6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfspo"]
+size = Vector2(50, 50)
+
+[node name="Trader" type="Node2D" unique_id=1191620719]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1437975324]
+texture = ExtResource("1_uag6j")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=953480520]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=671137028]
+shape = SubResource("RectangleShape2D_hfspo")

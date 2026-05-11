@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d06yqrro0elio"]
+
+[ext_resource type="Script" uid="uid://ccm6ctecruhcx" path="res://Scripts/dumbTrader.gd" id="1_sq57k"]
+[ext_resource type="Texture2D" uid="uid://cnirv0ut724wp" path="res://Assets/Textures/dumbTrader.webp" id="2_tp0n4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfspo"]
+size = Vector2(50, 50)
+
+[node name="Trader" type="Node2D" unique_id=1191620719]
+script = ExtResource("1_sq57k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1437975324]
+texture = ExtResource("2_tp0n4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=953480520]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=671137028]
+shape = SubResource("RectangleShape2D_hfspo")

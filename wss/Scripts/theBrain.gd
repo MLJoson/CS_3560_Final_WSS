@@ -17,19 +17,14 @@ func _ready():
 	print("Recommended tile: ", recommendation)
 
 func set_target(target_tile: Vector2i):
-	if not vision.is_tile_visible(
-		Vector2i(int(position.x / tile_size), int(position.y / tile_size)),
-		target_tile):
+	if not vision.is_tile_visible(Vector2i(int(position.x / tile_size), int(position.y / tile_size)), target_tile):
 		return
-	
+	Player.isMoving = true
 	path = generate_simple_path(target_tile)
 	
 func generate_simple_path(target: Vector2i):
 	var result = []
-	var current = Vector2i(
-	int(position.x / tile_size),
-	int(position.y / tile_size)
-	)
+	var current = Vector2i(int(position.x / tile_size), int(position.y / tile_size))
 	
 	# Move in X direction
 	while current.x != target.x:
@@ -53,6 +48,7 @@ func _process(delta):
 	
 	update_pointer()
 	if path.size() == 0:
+		Player.isMoving = false
 		return
 	
 	var target_tile = path[0]
@@ -84,6 +80,7 @@ func collect_item_at_tile(tile_pos: Vector2i):
 	
 	# loop through children to find items at this tile
 	for child in map.get_children():
+		#For items
 		if child is Node2D:
 			var child_tile = Vector2i(
 				int(child.position.x / tile_size),
@@ -91,6 +88,11 @@ func collect_item_at_tile(tile_pos: Vector2i):
 				
 			if child_tile == tile_pos and child.has_method("collect"):
 				child.collect()
+		#for traders
+		if child is BaseTrader:
+			var trader_tile = Vector2i(int(child.position.x / tile_size), int(child.position.y / tile_size))
+			if trader_tile == tile_pos:
+				open_trading_menu(child)
 
 #adding brain functions using polymorphism and inheritance
 func get_desired_item_type():
@@ -136,3 +138,10 @@ func update_pointer():
 	var target_pos = get_parent().get_tile_world_position(recommendation)
 	var dir = target_pos - global_position
 	pointer.rotation = lerp_angle(pointer.rotation, dir.angle() + PI/2, 0.1)
+
+#open trade menu
+func open_trading_menu(trader):
+	get_tree().paused = true
+	var trade_ui = preload("res://Scenes/TraderUI.tscn").instantiate()
+	trade_ui.set_trader(trader)
+	get_tree().current_scene.add_child(trade_ui)

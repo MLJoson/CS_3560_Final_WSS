@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://gonqjatdbmkq"]
+
+[ext_resource type="Script" uid="uid://dl6sw74o3hegu" path="res://Scripts/trader_ui.gd" id="1_5amkp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0n48n"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_5amkp"]
+font_size = 48
+
+[node name="TraderUi" type="CanvasLayer" unique_id=377191355]
+process_mode = 2
+script = ExtResource("1_5amkp")
+
+[node name="Panel" type="Panel" parent="." unique_id=1611623472]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="goldTextbox" type="LineEdit" parent="Panel" unique_id=1845907573]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 245.0
+offset_right = 318.0
+offset_bottom = 276.0
+placeholder_text = "Enter Amount"
+virtual_keyboard_type = 2
+
+[node name="Label" type="Label" parent="Panel/goldTextbox" unique_id=1916532971]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -29.0
+offset_right = 113.0
+offset_bottom = -6.0
+text = "Gold to offer"
+
+[node name="waterTextbox" type="LineEdit" parent="Panel" unique_id=2079223110]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 244.0
+offset_right = 685.0
+offset_bottom = 275.0
+placeholder_text = "Enter Amount"
+virtual_keyboard_type = 2
+
+[node name="Label" type="Label" parent="Panel/waterTextbox" unique_id=429681707]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -29.0
+offset_right = 129.0
+offset_bottom = -6.0
+text = "Water to recieve"
+
+[node name="foodTextbox" type="LineEdit" parent="Panel" unique_id=700917269]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 244.0
+offset_right = 886.0
+offset_bottom = 275.0
+placeholder_text = "Enter Amount"
+virtual_keyboard_type = 2
+
+[node name="Label" type="Label" parent="Panel/foodTextbox" unique_id=377328492]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -29.0
+offset_right = 129.0
+offset_bottom = -6.0
+text = "Food to recieve"
+
+[node name="offerButton" type="Button" parent="Panel" unique_id=666682766]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 430.0
+offset_right = 415.0
+offset_bottom = 461.0
+scale = Vector2(2, 2)
+text = "Offer"
+
+[node name="acceptButton" type="Button" parent="Panel" unique_id=35953594]
+layout_mode = 0
+offset_left = 655.0
+offset_top = 433.0
+offset_right = 704.0
+offset_bottom = 464.0
+scale = Vector2(2, 2)
+disabled = true
+text = "Accept"
+
+[node name="exitButton" type="Button" parent="Panel" unique_id=2017146526]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 534.0
+offset_right = 567.0
+offset_bottom = 565.0
+scale = Vector2(2, 2)
+text = "Exit"
+
+[node name="Label" type="Label" parent="Panel" unique_id=593934988]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 217.0
+offset_right = 443.0
+offset_bottom = 284.0
+text = "=>"
+label_settings = SubResource("LabelSettings_0n48n")
+
+[node name="Label2" type="Label" parent="Panel" unique_id=1303892682]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 58.0
+offset_right = 719.0
+offset_bottom = 125.0
+text = "Trader Menu"
+label_settings = SubResource("LabelSettings_5amkp")
+
+[node name="statusLabel" type="Label" parent="Panel" unique_id=1932043930]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 336.0
+offset_right = 720.0
+offset_bottom = 403.0
+text = "Status: "
+label_settings = SubResource("LabelSettings_5amkp")
+
+[connection signal="pressed" from="Panel/offerButton" to="." method="_on_offer_button_pressed"]
+[connection signal="pressed" from="Panel/acceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="Panel/exitButton" to="." method="_on_exit_button_pressed"]

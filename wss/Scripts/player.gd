@@ -1,15 +1,19 @@
 extends Node
 
-
 #Setting player stats
 var MAX_STRENGTH: int = 100
-var MAX_FOOD: int = 50
-var MAX_WATER: int = 50
+var MAX_FOOD: int = 100
+var MAX_WATER: int = 100
 
 var strength: int = 100 #may use this
 var food: int = 25
 var water: int = 25
 var gold: int = 0
+
+#player states
+var isMoving = false
+var idleTimer := 0.0
+var idleRegenTime := 5.0
 
 func apply_movement_cost(terrain):
 	match terrain:
@@ -58,6 +62,34 @@ func apply_movement_cost(terrain):
 #Resets when game resets
 func reset():
 	strength = 100 #may use this
-	food = 25
-	water = 25
+	food = 100
+	water = 100
 	gold = 0
+
+#To gain strength
+#rule: gain 5 strength for every 5 seconds but lose 1 food and water
+func _process(delta):
+	if isMoving:
+		idleTimer = 0.0
+		return
+	idleTimer += delta
+	if idleTimer >= idleRegenTime:
+		idleTimer = 0.0
+		# consume supplies
+		food -= 1
+		water -= 1
+		# restore strength
+		strength += 5
+		strength = min(strength, MAX_STRENGTH)
+		# starvation/dehydration punishment
+		if food < 0:
+			strength += food
+			food = max(food, 0)
+		if water < 0:
+			strength += water
+			water = max(water, 0)
+		print("Rested -> Strength:", strength)
+		get_tree().call_group("ui", "update_ui")
+		#lose condition
+		if strength <= 0:
+			get_tree().change_scene_to_file("res://Scenes/YouLose.tscn")

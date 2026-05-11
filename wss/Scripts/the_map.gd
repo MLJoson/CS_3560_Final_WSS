@@ -231,6 +231,25 @@ func try_spawn_item(x,y):
 	item.position = Vector2(x * tile_size, y * tile_size)
 	add_child(item)
 
+#attempting to spawn trader
+func try_spawn_trader(x, y):
+	var spawn_chance = 0.01
+	match Global.difficulty:
+		"Easy":
+			spawn_chance = 0.02
+		"Medium":
+			spawn_chance = 0.01
+		"Hard":
+			spawn_chance = 0.005
+	# don't spawn on starting tile
+	if x == 0:
+		return false
+	# RNG fail
+	if randf() > spawn_chance:
+		return false
+	spawn_trader(x, y)
+	return true
+
 #creates the map with the tiles and adds the terrain tiles to each of them
 func spawn_map():
 	for x in range(width):
@@ -246,7 +265,8 @@ func spawn_map():
 			add_child(tile)
 			tiles[x].append(tile)
 			
-			try_spawn_item(x,y)
+			if not try_spawn_trader(x, y):
+				try_spawn_item(x, y)
 
 	var placement = randi_range(0, height-1)
 	player_instance = player_types[Global.brain].instantiate()
@@ -292,3 +312,17 @@ func on_player_win():
 
 func get_tile_world_position(tile: Vector2i) -> Vector2:
 	return Vector2(tile.x * tile_size, tile.y * tile_size)
+
+#trader spawning
+func spawn_trader(x, y):
+	var traderScene
+	match Global.difficulty:
+		"Easy":
+			traderScene = preload("res://Assets/dumbTrader.tscn")
+		"Medium":
+			traderScene = preload("res://Assets/regularTrader.tscn")
+		"Hard":
+			traderScene = preload("res://Assets/angryTrader.tscn")
+	var trader = traderScene.instantiate()
+	trader.position = Vector2(x * tile_size, y * tile_size)
+	add_child(trader)
