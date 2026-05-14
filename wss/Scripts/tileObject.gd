@@ -15,5 +15,5 @@ func set_visible_state(is_visible: bool):
 		modulate = Color(1,1,1) # normal
 		$Button.disabled = false
 	else:
-		modulate = Color(0.2,0.2,0.2) # dark/clouded
+		modulate = Color(0.001,0.001,0.001) # dark/clouded
 		$Button.disabled = true

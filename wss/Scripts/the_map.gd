@@ -289,6 +289,7 @@ func update_visibility():
 	int(player_instance.position.x / tile_size),
 	int(player_instance.position.y / tile_size))
 	
+	# Update tile visibility
 	for x in range(width):
 		for y in range(height):
 			var tile = tiles[x][y]
@@ -297,6 +298,26 @@ func update_visibility():
 				tile.set_visible_state(true)
 			else:
 				tile.set_visible_state(false)
+	# Item + trader visibility
+	for child in get_children():
+		# ITEMS
+		if child.has_method("get_item_type"):
+			var item_tile = Vector2i(
+				int(child.position.x / tile_size),
+				int(child.position.y / tile_size))
+			var visible_to_player = player_instance.vision.is_tile_visible(
+				player_tile,
+				item_tile)
+			child.visible = visible_to_player
+		# TRADERS
+		elif child is BaseTrader:
+			var trader_tile = Vector2i(
+				int(child.position.x / tile_size),
+				int(child.position.y / tile_size))
+			var visible_to_player = player_instance.vision.is_tile_visible(
+				player_tile,
+				trader_tile)
+			child.visible = visible_to_player
 	print(player_instance.vision.offsets)
 
 #win conditioning check

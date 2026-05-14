@@ -1,12 +1,32 @@
 [gd_scene format=3 uid="uid://gonqjatdbmkq"]
 
 [ext_resource type="Script" uid="uid://dl6sw74o3hegu" path="res://Scripts/trader_ui.gd" id="1_5amkp"]
+[ext_resource type="Texture2D" uid="uid://cnirv0ut724wp" path="res://Assets/Textures/dumbTrader.webp" id="2_kdw4f"]
+[ext_resource type="Texture2D" uid="uid://ccuoawwvsyhiw" path="res://Assets/Textures/regularTrader.webp" id="3_jwd6q"]
+[ext_resource type="Texture2D" uid="uid://5q7y23pgytq4" path="res://Assets/Textures/angryTrader.webp" id="4_jt4xg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kdw4f"]
+font_size = 20
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwd6q"]
+font_size = 20
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jt4xg"]
+font_size = 20
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0n48n"]
 font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_5amkp"]
 font_size = 48
+shadow_size = 26
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="TraderUi" type="CanvasLayer" unique_id=377191355]
 process_mode = 2
@@ -20,6 +40,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=875561229]
+modulate = Color(1, 1, 1, 0.39215687)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer" unique_id=1357846725]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_kdw4f")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer" unique_id=1389861572]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_jwd6q")
+stretch_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/HBoxContainer" unique_id=579647530]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_jt4xg")
+stretch_mode = 1
+
 [node name="goldTextbox" type="LineEdit" parent="Panel" unique_id=1845907573]
 layout_mode = 0
 offset_left = 192.0
@@ -31,11 +78,12 @@ virtual_keyboard_type = 2
 
 [node name="Label" type="Label" parent="Panel/goldTextbox" unique_id=1916532971]
 layout_mode = 0
-offset_left = 15.0
-offset_top = -29.0
-offset_right = 113.0
-offset_bottom = -6.0
+offset_left = 4.0
+offset_top = -36.0
+offset_right = 127.0
+offset_bottom = -8.0
 text = "Gold to offer"
+label_settings = SubResource("LabelSettings_kdw4f")
 
 [node name="waterTextbox" type="LineEdit" parent="Panel" unique_id=2079223110]
 layout_mode = 0
@@ -48,11 +96,12 @@ virtual_keyboard_type = 2
 
 [node name="Label" type="Label" parent="Panel/waterTextbox" unique_id=429681707]
 layout_mode = 0
-offset_left = 2.0
-offset_top = -29.0
-offset_right = 129.0
+offset_left = -13.0
+offset_top = -34.0
+offset_right = 146.0
 offset_bottom = -6.0
 text = "Water to recieve"
+label_settings = SubResource("LabelSettings_jwd6q")
 
 [node name="foodTextbox" type="LineEdit" parent="Panel" unique_id=700917269]
 layout_mode = 0
@@ -65,11 +114,12 @@ virtual_keyboard_type = 2
 
 [node name="Label" type="Label" parent="Panel/foodTextbox" unique_id=377328492]
 layout_mode = 0
-offset_left = 2.0
-offset_top = -29.0
-offset_right = 129.0
-offset_bottom = -6.0
+offset_left = -11.0
+offset_top = -33.0
+offset_right = 137.0
+offset_bottom = -5.0
 text = "Food to recieve"
+label_settings = SubResource("LabelSettings_jt4xg")
 
 [node name="offerButton" type="Button" parent="Panel" unique_id=666682766]
 layout_mode = 0

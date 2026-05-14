@@ -1,9 +1,20 @@
 [gd_scene format=3 uid="uid://dl3arau17cfes"]
 
 [ext_resource type="Script" uid="uid://hi703u6bpyaq" path="res://Scripts/you_win_page.gd" id="1_a7cdt"]
+[ext_resource type="Texture2D" uid="uid://cuyauqt08u83h" path="res://Assets/Textures/tundra.webp" id="2_des0a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uthr7"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
 
 [node name="YouWin!" type="CanvasLayer" unique_id=1969728204]
 script = ExtResource("1_a7cdt")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2015791070]
+offset_right = 1152.0
+offset_bottom = 650.0
+texture = ExtResource("2_des0a")
+stretch_mode = 1
 
 [node name="Label" type="Label" parent="." unique_id=1979911329]
 anchors_preset = 8
@@ -11,13 +22,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = -239.0
-offset_bottom = -216.0
+offset_left = -280.0
+offset_top = -132.0
+offset_right = 297.0
+offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
 text = "Congratulation: You Win!"
+label_settings = SubResource("LabelSettings_uthr7")
 
 [node name="newGameButton" type="Button" parent="." unique_id=1103269544]
 offset_left = 315.0

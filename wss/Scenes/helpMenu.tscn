@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://ct7nkaew5j3gt"]
+
+[ext_resource type="Texture2D" uid="uid://dt7xstnjnc66j" path="res://Assets/Textures/desert.png" id="1_jtlyh"]
+[ext_resource type="Script" uid="uid://difppnrkn54j8" path="res://Scripts/help_menu.gd" id="1_nm284"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtlyh"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nm284"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.973535, 0.9735351, 0.973535, 1)
+
+[node name="HelpMenu" type="Control" unique_id=626113196]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nm284")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1099284582]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jtlyh")
+stretch_mode = 1
+
+[node name="helpTitle" type="Label" parent="." unique_id=1694272141]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 73.0
+offset_right = 772.0
+offset_bottom = 140.0
+text = "Rules and Controls"
+label_settings = SubResource("LabelSettings_jtlyh")
+
+[node name="helpContent" type="Label" parent="." unique_id=1233860687]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 158.0
+offset_right = 925.0
+offset_bottom = 558.0
+text = "Controls: Mouse click on clickable tiles
+ - Enter integers for when prompted for trading and settings
+ - Click buttons (unless greyed out)
+Win condition: Get to the right side of the map
+Lose conditions: Run out of strength
+How to gain strength: Stay idle for 3 seconds but costs: 1 water, 1 food
+You lose strength, food, water when traversing each tile
+ - 5 biomes total with each having a different penalty
+You have 4 vision types in accordance to the reference image
+You have 3 different brains that point to a specific resourse
+Collect gold to trade with traders
+There are 3 trader that scale on difficulty
+There are 3 difficulties that change the number of resources in the map"
+label_settings = SubResource("LabelSettings_nm284")
+
+[node name="Button" type="Button" parent="." unique_id=1999279738]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 585.0
+offset_right = 577.0
+offset_bottom = 616.0
+scale = Vector2(2, 2)
+text = "Return to menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

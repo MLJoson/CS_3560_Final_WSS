@@ -13,7 +13,7 @@ var gold: int = 0
 #player states
 var isMoving = false
 var idleTimer := 0.0
-var idleRegenTime := 5.0
+var idleRegenTime := 3.0
 
 func apply_movement_cost(terrain):
 	match terrain:
