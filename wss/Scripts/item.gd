@@ -1,11 +1,17 @@
 extends Node2D
-#This program is the main class for collecting items and updating player stats
 
-#Called when player collects the item
+# This is the base item class
+# It handles collecting items and lets child item scripts define their own effects
+
+# Called when the player collects this item
 func collect():
+	# Apply the item's effect, such as adding food, water, or gold
 	apply_effect()
-	queue_free()  # remove item from scene
+	
+	# Remove the item from the scene after it has been collected
+	queue_free()
 
-#To be overridden by child scripts
+# Placeholder function for child scripts to override
+# Each specific item should define what happens when it is collected
 func apply_effect():
 	pass
